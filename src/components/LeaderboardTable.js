@@ -7,6 +7,7 @@ class LeaderboardTable extends React.Component {
         super(props);
         this.state = {
             recentLeaders: [],
+            allTimeLeaders: []
         };
     }
 
@@ -16,14 +17,33 @@ class LeaderboardTable extends React.Component {
                 this.setState({
                     recentLeaders: res.data
                 })
-            })
+            });
+
+        Axios.get("https://fcctop100.herokuapp.com/api/fccusers/top/alltime")
+            .then(res => {
+                this.setState({
+                    allTimeLeaders: res.data
+                })
+            });
     }
 
     render() {
         return (
-            <div>
-                {this.state.recentLeaders && <LeaderRow/>}
-            </div>
+            <table>
+                <thead>
+                <tr className="topRow">
+                    <th className="ranking">Ranking</th>
+                    <th className="user">User</th>
+                    <th className="recent"><a>Points Last 30 Days</a></th>
+                    <th className="allTime"><a>Points All Time</a></th>
+                </tr>
+                </thead>
+                <tbody>
+                    {this.state.recentLeaders.map((leader, index) => {
+                        return <LeaderRow leader={leader} key={index} rank={index+1}/>
+                    })}
+                </tbody>
+            </table>
         )
     }
 }
