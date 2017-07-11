@@ -7,7 +7,8 @@ class LeaderboardTable extends React.Component {
         super(props);
         this.state = {
             recentLeaders: [],
-            allTimeLeaders: []
+            allTimeLeaders: [],
+            toggleLeaderBoard: true
         };
     }
 
@@ -31,14 +32,21 @@ class LeaderboardTable extends React.Component {
 
     }
 
-    render() {
-        let recentLeaders = this.state.recentLeaders.map((leader, index) => {
-            return <LeaderRow leader={leader} key={index} rank={index+1}/>
-        });
+    getLeaderBoard() {
+        return this.toggleLeaderBoard
+            ? this.state.recentLeaders.map((leader, index) => {
+                return <LeaderRow leader={leader} key={index} rank={index+1}/>
+            })
+            : this.state.allTimeLeaders.map((leader, index) => {
+                return <LeaderRow leader={leader} key={index} rank={index+1}/>
+            });
+    }
 
-        let allTimeLeaders = this.state.allTimeLeaders.map((leader, index) => {
-            return <LeaderRow leader={leader} key={index} rank={index+1}/>
-        });
+    getButtons() {
+
+    }
+
+    render() {
         return (
             <table>
                 <thead>
@@ -50,7 +58,7 @@ class LeaderboardTable extends React.Component {
                 </tr>
                 </thead>
                 <tbody>
-
+                    {this.getLeaderBoard()}
                 </tbody>
             </table>
         )
