@@ -1,9 +1,9 @@
 import React from 'react';
 import Axios from 'axios';
 import LeaderHeader from './LeaderHeader.js';
-import LeaderRow from './LeaderRow.js';
+import LeaderBody from './LeaderBody.js';
 
-class LeaderboardTable extends React.Component {
+class LeaderBoardTable extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -11,6 +11,8 @@ class LeaderboardTable extends React.Component {
             allTimeLeaders: [],
             toggleLeaderBoard: true
         };
+
+        this.handleLeaderBoardChange = this.handleLeaderBoardChange.bind();
     }
 
     componentDidMount() {
@@ -29,27 +31,20 @@ class LeaderboardTable extends React.Component {
             });
     }
 
-    getLeaderBoard() {
-        return this.toggleLeaderBoard
-            ? this.state.recentLeaders.map((leader, index) => {
-                return <LeaderRow leader={leader} key={index} rank={index+1}/>
-            })
-            : this.state.allTimeLeaders.map((leader, index) => {
-                return <LeaderRow leader={leader} key={index} rank={index+1}/>
-            });
+    handleLeaderBoardChange() {
+        console.log(this.state.toggleLeaderBoard);
     }
-
 
     render() {
         return (
             <table>
-                <LeaderHeader/>
-                <tbody>
-                    {this.getLeaderBoard()}
-                </tbody>
+                <LeaderHeader active={this.state.toggleLeaderBoard} handleLeaderBoardChange={this.handleLeaderBoardChange}/>
+                {this.state.toggleLeaderBoard
+                    ? <LeaderBody leaders={this.state.recentLeaders} />
+                    : <LeaderBody leaders={this.state.allTimeLeaders} />}
             </table>
         )
     }
 }
 
-export default LeaderboardTable
+export default LeaderBoardTable

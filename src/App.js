@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
 import './App.css';
-import LeaderboardTable from './components/LeaderboardTable.js';
+import LeaderBoardTable from './components/LeaderBoardTable.js';
 
 class App extends Component {
   render() {
     return (
-        <LeaderboardTable/>
+        <LeaderBoardTable/>
     );
   }
 }
