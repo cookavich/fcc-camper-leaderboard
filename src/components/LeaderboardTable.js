@@ -1,6 +1,7 @@
 import React from 'react';
-import LeaderRow from './LeaderRow.js';
 import Axios from 'axios';
+import LeaderHeader from './LeaderHeader.js';
+import LeaderRow from './LeaderRow.js';
 
 class LeaderboardTable extends React.Component {
     constructor(props) {
@@ -28,10 +29,6 @@ class LeaderboardTable extends React.Component {
             });
     }
 
-    handleClick() {
-
-    }
-
     getLeaderBoard() {
         return this.toggleLeaderBoard
             ? this.state.recentLeaders.map((leader, index) => {
@@ -42,21 +39,11 @@ class LeaderboardTable extends React.Component {
             });
     }
 
-    getButtons() {
-
-    }
 
     render() {
         return (
             <table>
-                <thead>
-                <tr className="topRow">
-                    <th className="ranking">Ranking</th>
-                    <th className="user">User</th>
-                    <th className="recent"><a className="button" onClick={this.handleClick}>Points Last 30 Days \/</a></th>
-                    <th className="allTime"><a className="button" onClick={this.handleClick}>Points All Time</a></th>
-                </tr>
-                </thead>
+                <LeaderHeader/>
                 <tbody>
                     {this.getLeaderBoard()}
                 </tbody>
