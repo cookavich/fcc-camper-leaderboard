@@ -3,12 +3,11 @@ import React from 'react';
 class LeaderHeader extends React.Component {
     constructor(props) {
         super(props);
-        this.handleClick = this.handleClick.bind(this);
     }
 
-    handleClick() {
-        this.props.handleLeaderBoardChange();
-    }
+    handleClick = () =>{
+        this.props.handleLeaderChange();
+    };
 
     render() {
         return (

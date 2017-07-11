@@ -11,7 +11,7 @@ class LeaderBody extends React.Component {
             <tbody>
             {this.props.leaders
                 .map((leader, index) => {
-                    return <LeaderRow leader={leader} key={leader.uusername} rank={index + 1}/>
+                    return <LeaderRow leader={leader} key={leader.username} rank={index + 1}/>
                 })}
             </tbody>
         )

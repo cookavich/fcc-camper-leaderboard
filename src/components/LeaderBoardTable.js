@@ -11,8 +11,6 @@ class LeaderBoardTable extends React.Component {
             allTimeLeaders: [],
             toggleLeaderBoard: true
         };
-
-        this.handleLeaderBoardChange = this.handleLeaderBoardChange.bind();
     }
 
     componentDidMount() {
@@ -31,14 +29,16 @@ class LeaderBoardTable extends React.Component {
             });
     }
 
-    handleLeaderBoardChange() {
-        console.log(this.state.toggleLeaderBoard);
-    }
+    handleLeaderBoardChange = () => {
+        this.setState(prevState => {
+            return {toggleLeaderBoard: !prevState.toggleLeaderBoard}
+        })
+    };
 
     render() {
         return (
             <table>
-                <LeaderHeader active={this.state.toggleLeaderBoard} handleLeaderBoardChange={this.handleLeaderBoardChange}/>
+                <LeaderHeader active={this.state.toggleLeaderBoard} handleLeaderChange={this.handleLeaderBoardChange}/>
                 {this.state.toggleLeaderBoard
                     ? <LeaderBody leaders={this.state.recentLeaders} />
                     : <LeaderBody leaders={this.state.allTimeLeaders} />}
