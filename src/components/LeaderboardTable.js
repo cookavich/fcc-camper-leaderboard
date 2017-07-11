@@ -34,8 +34,8 @@ class LeaderboardTable extends React.Component {
                 <tr className="topRow">
                     <th className="ranking">Ranking</th>
                     <th className="user">User</th>
-                    <th className="recent"><a>Points Last 30 Days</a></th>
-                    <th className="allTime"><a>Points All Time</a></th>
+                    <th className="recent"><a className="button">Points Last 30 Days</a></th>
+                    <th className="allTime"><a className="button">Points All Time</a></th>
                 </tr>
                 </thead>
                 <tbody>
