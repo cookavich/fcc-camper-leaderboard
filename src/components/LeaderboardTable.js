@@ -28,20 +28,26 @@ class LeaderboardTable extends React.Component {
     }
 
     render() {
+        let recentLeaders = this.state.recentLeaders.map((leader, index) => {
+            return <LeaderRow leader={leader} key={index} rank={index+1}/>
+        });
+
+        let allTimeLeaders = this.state.allTimeLeaders.map((leader, index) => {
+            return <LeaderRow leader={leader} key={index} rank={index+1}/>
+        });
+
         return (
             <table>
                 <thead>
                 <tr className="topRow">
                     <th className="ranking">Ranking</th>
                     <th className="user">User</th>
-                    <th className="recent"><a className="button">Points Last 30 Days</a></th>
+                    <th className="recent"><a className="button">Points Last 30 Days \/</a></th>
                     <th className="allTime"><a className="button">Points All Time</a></th>
                 </tr>
                 </thead>
                 <tbody>
-                    {this.state.recentLeaders.map((leader, index) => {
-                        return <LeaderRow leader={leader} key={index} rank={index+1}/>
-                    })}
+
                 </tbody>
             </table>
         )
